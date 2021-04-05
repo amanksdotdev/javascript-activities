@@ -105,7 +105,48 @@ function questionSolver(pageUrl, code, questionName) {
                 return questionClickPromise;
             })
             .then(function () {
+                // clicking custom input checkbox
+                const checkboxClickPromise = waitAndClick(
+                    ".custom-checkbox.inline"
+                );
+                return checkboxClickPromise;
+            })
+            .then(function () {
+                //type in custom input area
+                const typeInCustomInput = gtab.type(".custominput", code);
+                return typeInCustomInput;
+            })
+            .then(function () {
+                return gtab.keyboard.down("Control");
+            })
+            .then(function () {
+                return gtab.keyboard.press("a");
+            })
+            .then(function () {
+                return gtab.keyboard.press("x");
+            })
+            .then(function () {
+                return gtab.click(".monaco-editor.no-user-select.vs");
+            })
+            .then(function () {
+                return gtab.keyboard.press("a");
+            })
+            .then(function () {
+                return gtab.keyboard.press("v");
+            })
+            .then(function () {
+                return gtab.keyboard.up("Control");
+            })
+            .then(function () {
+                return gtab.click(
+                    ".pull-right.btn.btn-primary.hr-monaco-submit"
+                );
+            })
+            .then(function () {
                 resolve();
+            })
+            .catch(function () {
+                reject(err);
             });
     });
 }
