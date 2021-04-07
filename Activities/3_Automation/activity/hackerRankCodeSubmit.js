@@ -8,13 +8,16 @@ const { email, password } = JSON.parse(
 );
 const { codes } = require("./codes");
 
+//launch browser
 const browserPromise = puppeteer.launch({
     headless: false,
     defaultViewport: null,
     args: ["--start-maximized"],
 });
 
+// global tab variable so all functions can use it
 let gtab;
+
 browserPromise
     .then(function (browserInstance) {
         const newTabPromise = browserInstance.newPage();
