@@ -57,7 +57,13 @@ browserPromise
     .then(function () {
         const url = gtab.url();
         const questionObj = codes[0];
-        questionSolver(url, questionObj.soln, questionObj.qName);
+        let qChain = questionSolver(url, questionObj.soln, questionObj.qName);
+        for (let i = 1; i < codes.length; i++) {
+            qChain = qChain.then(function () {
+                return questionSolver(url, codes[i].soln, codes[i].qName);
+            });
+        }
+        return qChain;
     })
     .catch(function (err) {
         console.log(err);
