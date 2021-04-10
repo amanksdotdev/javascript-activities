@@ -2,7 +2,8 @@
 
 ### WHAT ?
 
-Automating Hackerrank website to automatic login and submission of problems.
+1. Automating Hackerrank website to automatic login and submission of problems.
+2. Comparing Prices of a product from various e-commerce website.
 
 ---
 
