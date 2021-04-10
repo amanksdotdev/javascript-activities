@@ -1,3 +1,3 @@
-# JavaScript Activies
+# JavaScript Activties
 
-Various activities (_projects & mini-projects_) to learn javascript in-depth.
+Various activities **(_projects & mini-projects_)** to learn javascript in-depth.
