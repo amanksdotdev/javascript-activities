@@ -1,0 +1,53 @@
+/* RESET  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: aliceblue;
+}
+
+.header {
+    height: 30vh;
+    background-color: aqua;
+    text-align: center;
+    box-shadow: 0 5px 10px rgb(0, 0, 0, 0.12);
+}
+
+.header .heading {
+    font-size: 5rem;
+    padding-top: 1rem;
+}
+
+.header .input_box {
+    width: 60%;
+    height: 30%;
+    font-size: 1.5rem;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.task-container {
+    font-size: 1.25rem;
+    padding: 0 25%;
+}
+
+.task-container .instruction {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.task-container .task-list li {
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: aqua;
+    border-radius: 2%;
+    box-shadow: 0 5px 10px rgb(0, 0, 0, 0.12);
+}
+
+li {
+    list-style: none;
+}
