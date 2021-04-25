@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="priority-container round-borders">
+                <div class="priority box purple round-borders"></div>
+                <div class="priority box green round-borders"></div>
+                <div class="priority box yellow round-borders"></div>
+                <div class="priority box red round-borders"></div>
+            </div>
+            <div class="control-buttons round-borders">
+                <i class="fas fa-plus ctrl-btn ctrl-btn-add"></i>
+                <i class="fas fa-times ctrl-btn ctrl-btn-remove"></i>
+            </div>
+        </nav>
+
+        <div class="task-creator hidden">
+            <textarea
+                name="task"
+                id="task-text"
+                placeholder="enter task here..."
+            ></textarea>
+            <div class="color-box-container">
+                <div
+                    class="color-box purple round-borders selected-border"
+                ></div>
+                <div class="color-box green round-borders"></div>
+                <div class="color-box yellow round-borders"></div>
+                <div class="color-box red round-borders"></div>
+            </div>
+            <i class="fas fa-times ctrl-btn overlay-btn-remove"></i>
+        </div>
+
+        <div class="content-container">
+            <div class="task border-top-red">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Ratione ex laboriosam fugiat hic, cupiditate expedita repellat
+                ipsam dignissimos nihil velit eius tempora vel sit debitis
+                voluptatem ducimus provident delectus id.
+            </div>
+        </div>
+        <div class="overlay hidden"></div>
+
+        <script src="./script.js"></script>
+    </body>
+</html>

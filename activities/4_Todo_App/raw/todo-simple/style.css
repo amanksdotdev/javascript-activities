@@ -51,3 +51,25 @@ body {
 li {
     list-style: none;
 }
+
+@media (max-width: 600px) {
+    .header .heading {
+        display: none;
+    }
+    .header .input_box {
+        width: 70%;
+        height: 30%;
+        font-size: 1.5rem;
+        padding: 5px;
+        margin-top: 100px;
+    }
+    .task-container .instruction {
+        text-align: center;
+        padding: 1rem 0;
+        font-size: 0.8rem;
+    }
+    .task-container {
+        font-size: 1.25rem;
+        padding: 0 10%;
+    }
+}
