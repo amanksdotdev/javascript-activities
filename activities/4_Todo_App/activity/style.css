@@ -1,9 +1,11 @@
+/* REST  */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* VARIABLES  */
 :root {
     --red: #e74c3c;
     --yellow: #f1c40f;
@@ -11,6 +13,54 @@
     --purple: #9b59b6;
 }
 
+/* Utility classes  */
+
+.round-borders {
+    border-radius: 3%;
+}
+
+.box {
+    height: 20px;
+    width: 40px;
+}
+
+.yellow {
+    background-color: var(--yellow);
+}
+
+.purple {
+    background-color: var(--purple);
+}
+
+.red {
+    background-color: var(--red);
+}
+
+.green {
+    background-color: var(--green);
+}
+
+.border-top-red {
+    border-top: 1rem solid var(--red);
+}
+
+.border-top-yellow {
+    border-top: 1rem solid var(--yellow);
+}
+
+.border-top-green {
+    border-top: 1rem solid var(--green);
+}
+
+.border-top-purple {
+    border-top: 1rem solid var(--purple);
+}
+
+.selected-border {
+    border: 5px solid white;
+}
+
+/* CONTENT STYLES  */
 .navbar {
     display: flex;
     background-color: #111;
@@ -45,34 +95,9 @@
     cursor: pointer;
 }
 
-.round-borders {
-    border-radius: 3%;
-}
-
-.box {
-    height: 20px;
-    width: 40px;
-}
-
-.yellow {
-    background-color: var(--yellow);
-}
-
-.purple {
-    background-color: var(--purple);
-}
-
-.red {
-    background-color: var(--red);
-}
-
-.green {
-    background-color: var(--green);
-}
-
 .content-container {
     display: flex;
-    height: 85vh;
+    min-height: 95vh;
 
     margin: 0 auto;
     padding: 4rem 0;
@@ -80,11 +105,11 @@
     justify-content: center;
 }
 
-.task-box {
+/* .task-box {
     height: 200px;
     width: 200px;
     background-color: yellowgreen;
-}
+} */
 
 .task-creator {
     display: flex;
@@ -106,15 +131,24 @@
     padding: 1rem;
 }
 
-.task {
-    padding: 1rem;
-    margin: 0 2rem;
+.task-container {
+    margin: 0 1.5rem;
+    margin-bottom: 1.5rem;
     width: 350px;
     height: 200px;
-    background-color: #eee;
+    background-color: #fff;
+    box-shadow: 0 1.5rem 2.5rem rgba(0, 0, 0, 0.3);
     font-family: "Roboto", sans-serif;
     line-height: 1.6rem;
     overflow: auto;
+}
+
+.task {
+    padding: 1rem;
+}
+
+.task-filter {
+    height: 7%;
 }
 
 .task-text--div {
@@ -130,6 +164,8 @@
     font-style: italic;
     color: rgba(54, 53, 53, 0.76);
 }
+
+/* removing default textarea styling  */
 textarea {
     border: none;
     overflow: auto;
@@ -141,6 +177,7 @@ textarea {
 
     resize: none; /*remove the resize handle on the bottom right*/
 }
+
 .color-box-container {
     width: 20%;
     display: flex;
@@ -158,7 +195,7 @@ textarea {
 }
 
 .color-box {
-    width: 25%;
+    width: 30%;
     height: 10%;
 }
 
@@ -181,22 +218,38 @@ textarea {
     cursor: pointer;
 }
 
-.border-top-red {
-    border-top: 1rem solid var(--red);
+@media (max-width: 1240px) {
+    .task-creator {
+        width: 70%;
+    }
 }
 
-.border-top-yellow {
-    border-top: 1rem solid var(--yellow);
+@media (max-width: 960px) {
+    .priority-container {
+        width: 60%;
+    }
+
+    .control-buttons {
+        width: 20%;
+    }
+}
+@media (max-width: 768px) {
+    .task-creator {
+        width: 80%;
+        height: 30%;
+    }
 }
 
-.border-top-green {
-    border-top: 1rem solid var(--green);
-}
+@media (max-width: 480px) {
+    .task-creator {
+        width: 90%;
+        height: 30%;
+    }
+    .priority-container {
+        width: 70%;
+    }
 
-.border-top-purple {
-    border-top: 1rem solid var(--purple);
-}
-
-.selected-border {
-    border: 5px solid white;
+    .control-buttons {
+        width: 30%;
+    }
 }

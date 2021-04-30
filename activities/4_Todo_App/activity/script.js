@@ -5,7 +5,7 @@ const contentContainer = document.querySelector(".content-container");
 
 const addBtn = document.querySelector(".ctrl-btn-add");
 const taskCreator = document.querySelector(".task-creator");
-// const taskTextArea = document.getElementById("task-text-input");
+
 const overlay = document.querySelector(".overlay");
 
 const removeCreatorBtn = document.querySelector(".overlay-btn-remove");
@@ -24,6 +24,8 @@ const resetColor = function (colorboxes) {
         overlay.classList.remove("hidden");
 
         const colorboxes = document.querySelectorAll(".color-box");
+        document.getElementById("task-text-input").focus();
+
         colorboxes[0].classList.add("selected-border");
         for (let colorBox of colorboxes) {
             colorBox.addEventListener("click", () => {
@@ -31,7 +33,7 @@ const resetColor = function (colorboxes) {
                     cb.classList.remove("selected-border");
                 }
                 colorBox.classList.add("selected-border");
-                selectedColor = colorBox.classList[1].split("-").pop();
+                selectedColor = colorBox.classList[1];
                 console.log(selectedColor);
             });
         }
@@ -50,16 +52,31 @@ const resetColor = function (colorboxes) {
             const taskTextArea = document.getElementById("task-text-input");
             const text = taskTextArea.value;
             const div = document.createElement("div");
-            div.classList.add("task");
-            div.classList.add(`border-top-${selectedColor}`);
-            div.innerHTML = `<div class="task-id">#randomID</div>
-            <div class="task-text--div" contenteditable="true">${text}</div>`;
+            div.classList.add("task-container");
+            div.innerHTML = ` <div class="task-filter ${selectedColor}"></div>
+            <div class="task">
+                <div class="task-id">#randomID</div>
+                <div class="task-text--div" contenteditable="true">${text}</div>
+            </div>`;
             contentContainer.appendChild(div);
 
             taskTextArea.value = "";
             resetColor(colorboxes);
             taskCreator.classList.add("hidden");
             overlay.classList.add("hidden");
+
+            const taskFilter = div.querySelector(".task-filter");
+            taskFilter.addEventListener("click", changeColor);
         }
     });
 })();
+
+function changeColor(e) {
+    let taskFilter = e.currentTarget;
+    let colors = ["purple", "green", "yellow", "red"];
+    let cColor = taskFilter.classList[1];
+    let idx = colors.indexOf(cColor);
+    let newColorIdx = (idx + 1) % 4;
+    taskFilter.classList.remove(cColor);
+    taskFilter.classList.add(colors[newColorIdx]);
+}
