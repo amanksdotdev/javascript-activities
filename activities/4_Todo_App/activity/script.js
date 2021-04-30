@@ -4,6 +4,7 @@ const colorBtn = document.querySelectorAll(".priority");
 const contentContainer = document.querySelector(".content-container");
 
 const addBtn = document.querySelector(".ctrl-btn-add");
+const removeBtn = document.querySelector(".ctrl-btn-remove");
 const taskCreator = document.querySelector(".task-creator");
 
 const overlay = document.querySelector(".overlay");
@@ -51,11 +52,13 @@ const resetColor = function (colorboxes) {
             const colorboxes = document.querySelectorAll(".color-box");
             const taskTextArea = document.getElementById("task-text-input");
             const text = taskTextArea.value;
+            let uifn = new ShortUniqueId();
+            let uid = uifn();
             const div = document.createElement("div");
             div.classList.add("task-container");
             div.innerHTML = ` <div class="task-filter ${selectedColor}"></div>
             <div class="task">
-                <div class="task-id">#randomID</div>
+                <div class="task-id">#${uid}</div>
                 <div class="task-text--div" contenteditable="true">${text}</div>
             </div>`;
             contentContainer.appendChild(div);
@@ -67,6 +70,17 @@ const resetColor = function (colorboxes) {
 
             const taskFilter = div.querySelector(".task-filter");
             taskFilter.addEventListener("click", changeColor);
+            div.addEventListener("click", removeTask);
+        }
+    });
+
+    removeBtn.addEventListener("click", () => {
+        removeBtn.classList.toggle("active");
+        addBtn.classList.toggle('disabled');
+        document.body.classList.toggle("cursor-not-allowed");
+        const allTaskBox = document.querySelectorAll(".task-container");
+        for (let task of allTaskBox) {
+            task.classList.toggle("cursor-crosshair");
         }
     });
 })();
@@ -79,4 +93,11 @@ function changeColor(e) {
     let newColorIdx = (idx + 1) % 4;
     taskFilter.classList.remove(cColor);
     taskFilter.classList.add(colors[newColorIdx]);
+}
+
+function removeTask(e) {
+    let taskContainer = e.currentTarget;
+    if (taskContainer.classList.contains("cursor-crosshair")) {
+        taskContainer.remove();
+    }
 }
