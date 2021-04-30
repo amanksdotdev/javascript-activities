@@ -5,48 +5,61 @@ const contentContainer = document.querySelector(".content-container");
 
 const addBtn = document.querySelector(".ctrl-btn-add");
 const taskCreator = document.querySelector(".task-creator");
-const taskTextArea = document.getElementById("task-text");
+// const taskTextArea = document.getElementById("task-text-input");
 const overlay = document.querySelector(".overlay");
-
-const colorboxes = document.querySelectorAll(".color-box");
 
 const removeCreatorBtn = document.querySelector(".overlay-btn-remove");
 
-addBtn.addEventListener("click", () => {
-    taskCreator.classList.remove("hidden");
-    overlay.classList.remove("hidden");
-});
+let selectedColor = "purple";
+const resetColor = function (colorboxes) {
+    selectedColor = "purple";
+    for (let cb of colorboxes) {
+        cb.classList.remove("selected-border");
+    }
+};
 
-removeCreatorBtn.addEventListener("click", () => {
-    taskCreator.classList.add("hidden");
-    overlay.classList.add("hidden");
-});
+(() => {
+    addBtn.addEventListener("click", () => {
+        taskCreator.classList.remove("hidden");
+        overlay.classList.remove("hidden");
 
-taskCreator.addEventListener("keydown", (e) => {
-    if (e.key == "Enter") {
-        const taskTextArea = document.getElementById("task-text");
-        const text = taskTextArea.value;
-        const div = document.createElement("div");
-        div.classList.add("task");
-        div.classList.add();
-        div.textContent = text;
-        contentContainer.appendChild(div);
+        const colorboxes = document.querySelectorAll(".color-box");
+        colorboxes[0].classList.add("selected-border");
+        for (let colorBox of colorboxes) {
+            colorBox.addEventListener("click", () => {
+                for (let cb of colorboxes) {
+                    cb.classList.remove("selected-border");
+                }
+                colorBox.classList.add("selected-border");
+                selectedColor = colorBox.classList[1].split("-").pop();
+                console.log(selectedColor);
+            });
+        }
+    });
 
-        taskTextArea.value = "";
+    removeCreatorBtn.addEventListener("click", () => {
+        const colorboxes = document.querySelectorAll(".color-box");
+        resetColor(colorboxes);
         taskCreator.classList.add("hidden");
         overlay.classList.add("hidden");
-    }
-});
-
-for (let i = 0; i < colorBtn.length; i++) {
-    colorBtn[i].addEventListener("click", (e) => {
-        const color = colorBtn[i].classList[2];
-        contentContainer.style.backgroundColor = color;
     });
-}
 
-for (let colorBox of colorboxes) {
-    colorBox.addEventListener("click", () => {
-        colorBox.classList.toggle("selected-border");
+    taskCreator.addEventListener("keydown", (e) => {
+        if (e.key == "Enter") {
+            const colorboxes = document.querySelectorAll(".color-box");
+            const taskTextArea = document.getElementById("task-text-input");
+            const text = taskTextArea.value;
+            const div = document.createElement("div");
+            div.classList.add("task");
+            div.classList.add(`border-top-${selectedColor}`);
+            div.innerHTML = `<div class="task-id">#randomID</div>
+            <div class="task-text--div" contenteditable="true">${text}</div>`;
+            contentContainer.appendChild(div);
+
+            taskTextArea.value = "";
+            resetColor(colorboxes);
+            taskCreator.classList.add("hidden");
+            overlay.classList.add("hidden");
+        }
     });
-}
+})();

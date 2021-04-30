@@ -73,9 +73,11 @@
 .content-container {
     display: flex;
     height: 85vh;
-    max-width: 1100px;
+
     margin: 0 auto;
     padding: 4rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .task-box {
@@ -98,12 +100,36 @@
     z-index: 10;
 }
 
-#task-text {
+#task-text-input {
     width: 80%;
     font-size: 1.4rem;
     padding: 1rem;
 }
 
+.task {
+    padding: 1rem;
+    margin: 0 2rem;
+    width: 350px;
+    height: 200px;
+    background-color: #eee;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.6rem;
+    overflow: auto;
+}
+
+.task-text--div {
+    padding: 0.5rem;
+    height: 60%;
+    text-align: center;
+}
+
+.task-id {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+    font-style: italic;
+    color: rgba(54, 53, 53, 0.76);
+}
 textarea {
     border: none;
     overflow: auto;
@@ -153,16 +179,6 @@ textarea {
 
 .color-box:hover {
     cursor: pointer;
-}
-
-.task {
-    padding: 2rem;
-    margin: 0 2rem;
-    width: 33%;
-    height: 250px;
-    background-color: #eee;
-    font-family: "Roboto", sans-serif;
-    line-height: 1.6rem;
 }
 
 .border-top-red {
