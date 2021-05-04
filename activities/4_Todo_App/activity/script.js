@@ -9,6 +9,7 @@ const taskTextArea = document.getElementById("task-text-input");
 const overlay = document.querySelector(".overlay");
 const taskCreator = document.querySelector(".task-creator");
 const removeTaskCreatorBtn = document.querySelector(".overlay-btn-remove");
+const priority = document.querySelectorAll(".priority");
 
 //default color
 let selectedColor = "purple";
@@ -31,7 +32,19 @@ const changeColor = function (e) {
     let idx = colors.indexOf(cColor);
     let newColorIdx = (idx + 1) % 4;
     taskFilter.classList.remove(cColor);
-    taskFilter.classList.add(colors[newColorIdx]);
+    let newColor = colors[newColorIdx];
+    taskFilter.classList.add(newColor);
+
+    let taskEl = taskFilter.parentNode.children[1];
+    let uid = taskEl.children[0].innerText;
+
+    for (let i = 0; i < taskArr.length; i++) {
+        let { id } = taskArr[i];
+        if ("#" + id == uid) {
+            taskArr[i].color = newColor;
+            localStorage.setItem("allTask", JSON.stringify(taskArr));
+        }
+    }
 };
 
 // open modal
@@ -144,17 +157,56 @@ const toggleDeleteMode = function () {
     }
 };
 
+const clearDisplay = function () {
+    let allTask = document.querySelectorAll(".task-container");
+    for (let t of allTask) {
+        t.remove();
+    }
+};
+
 // getting data from local storage
 let taskArr = [];
-if (localStorage.getItem("allTask")) {
-    taskArr = JSON.parse(localStorage.getItem("allTask"));
-    for (let i = 0; i < taskArr.length; i++) {
-        let { id, color, task } = taskArr[i];
-        createTask(color, task, false, id);
+const readData = function (colorFilter) {
+    taskArr = [];
+    if (localStorage.getItem("allTask")) {
+        taskArr = JSON.parse(localStorage.getItem("allTask"));
+        if (colorFilter) {
+            clearDisplay();
+            for (let i = 0; i < taskArr.length; i++) {
+                let { id, color, task } = taskArr[i];
+                if (color == colorFilter) {
+                    createTask(color, task, false, id);
+                }
+            }
+        } else {
+            for (let i = 0; i < taskArr.length; i++) {
+                let { id, color, task } = taskArr[i];
+                createTask(color, task, false, id);
+            }
+        }
     }
-}
+};
+readData();
 
 //EVENTS
 addBtn.addEventListener("click", openTaskCreator);
 removeTaskCreatorBtn.addEventListener("click", closeTaskCreator);
 deleteBtn.addEventListener("click", toggleDeleteMode);
+
+for (let p of priority) {
+    let color;
+    p.addEventListener("click", (e) => {
+        if (p.classList.contains("selected-border")) {
+            p.classList.remove("selected-border");
+            clearDisplay();
+            readData();
+            return;
+        }
+        priority.forEach((el) => el.classList.remove("selected-border"));
+
+        p.classList.add("selected-border");
+        color = p.classList[2];
+
+        readData(color);
+    });
+}

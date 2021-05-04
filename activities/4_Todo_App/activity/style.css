@@ -20,17 +20,18 @@
     border-radius: 3%;
 }
 
-.cursor-not-allowed{
+.cursor-not-allowed {
     cursor: not-allowed;
 }
 
-.cursor-crosshair{
+.cursor-crosshair {
     cursor: crosshair;
 }
 
 .disabled {
     display: none;
 }
+
 .box {
     height: 20px;
     width: 40px;
@@ -52,9 +53,8 @@
     background-color: var(--green);
 }
 
-
 .selected-border {
-    border: 5px solid white;
+    border: 3px solid white;
 }
 
 /* CONTENT STYLES  */
