@@ -22,10 +22,62 @@
     background-color: skyblue;
 }
 
-.grid {
+/* grid container  */
+.grid-container {
     height: calc(100vh - (80px + 30px + 40px));
+    position: relative;
+    overflow: auto;
 }
 
+.top-left-block {
+    height: 30px;
+    min-width: 40px;
+    background-color: gray;
+}
+
+.top-row {
+    height: 30px;
+    background-color: lightgreen;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    overflow: auto;
+}
+
+.col {
+    min-width: 70px;
+    border: 1px solid;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-col {
+    width: 40px;
+}
+
+.left-col-box {
+    border: 1px solid red;
+    height: 30px;
+    background-color: lightgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+}
+
+.grid {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+}
+
+/* SHEETS  */
 .sheets {
     height: 40px;
     background-color: lightgray;
@@ -63,4 +115,5 @@
 
 .active-sheet {
     background-color: white;
+    border-bottom: 4px solid lightgreen;
 }

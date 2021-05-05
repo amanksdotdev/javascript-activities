@@ -3,6 +3,7 @@ const addsheetBtn = document.querySelector(".add-sheet_container");
 const sheetList = document.querySelector(".sheets-list");
 const firstSheet = document.querySelector(".sheet");
 
+
 // FUNCTIONS
 const handleActiveSheet = function (e) {
     const sheet = e.currentTarget;
@@ -33,3 +34,4 @@ addsheetBtn.addEventListener("click", () => {
 
     sheetList.appendChild(newSheet);
 });
+

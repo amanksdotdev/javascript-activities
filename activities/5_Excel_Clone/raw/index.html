@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            .grid-container {
+                position: relative;
+            }
+
+            .top-left-block {
+                height: 30px;
+                min-width: 40px;
+                background-color: gray;
+            }
+
+            .top-row {
+                height: 30px;
+                background-color: lightgreen;
+                display: flex;
+                position: absolute;
+                top: 0;
+                left: 40px;
+            }
+
+            .col {
+                min-width: 70px;
+                border: 1px solid;
+                min-height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .left-col {
+                width: 40px;
+            }
+
+            .left-col-box {
+                border: 1px solid red;
+                height: 30px;
+                background-color: lightgreen;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .row {
+                display: flex;
+            }
+
+            .grid {
+                position: absolute;
+                top: 30px;
+                left: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="top-left-block"></div>
+            <div class="top-row">
+                <div class="col"></div>
+            </div>
+            <div class="left-col">
+                <div class="left-col-box"></div>
+            </div>
+            <div class="grid"></div>
+        </div>
+
+        <script>
+            const leftCol = document.querySelector(".left-col");
+            const topRow = document.querySelector(".top-row");
+            const grid = document.querySelector(".grid");
+
+            //grid
+            let gridStr = "";
+            for (let i = 0; i < 100; i++) {
+                gridStr += `<div class='row'>`;
+                for (let j = 0; j < 26; j++) {
+                    gridStr += `<div class='col'>${i + 1}${String.fromCharCode(
+                        65 + j
+                    )}</div>`;
+                }
+                gridStr += `</div>`;
+            }
+            grid.innerHTML = gridStr;
+
+            // top row
+            let topRowStr = "";
+            for (let i = 0; i < 26; i++) {
+                topRowStr += `<div class='col'>${String.fromCharCode(
+                    65 + i
+                )}</div>`;
+            }
+            topRow.innerHTML = topRowStr;
+
+            // left col
+            let leftColBox = "";
+            for (let i = 0; i < 100; i++) {
+                leftColBox += `<div class='left-col-box'>${i + 1}</div>`;
+            }
+            leftCol.innerHTML = leftColBox;
+        </script>
+    </body>
+</html>
