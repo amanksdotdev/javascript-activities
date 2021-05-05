@@ -22,12 +22,8 @@ let gridStr = "";
 for (let i = 0; i < 100; i++) {
     gridStr += `<div class='row'>`;
     for (let j = 0; j < 26; j++) {
-        gridStr += `<div class='col'>${i + 1}${String.fromCharCode(
-            65 + j
-        )}</div>`;    
-    }    
+        gridStr += `<div class='col' rid=${i} cid=${j} contenteditable="true"></div>`;
+    }
     gridStr += `</div>`;
-}    
+}
 grid.innerHTML = gridStr;
-
-

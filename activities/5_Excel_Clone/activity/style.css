@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Roboto';
+}
+
 /* UTILITY CLASSES  */
 .cursor-pointer:hover {
     cursor: pointer;
@@ -15,12 +19,27 @@
     min-height: 25px;
 }
 
+.selected {
+    background-color: darkgray;
+}
+
+.bold {
+    font-weight: bold;
+}
+.underline {
+    text-decoration: underline;
+}
+
+.italic {
+    font-style: italic;
+}
+
 /* CONTENT STYLING  */
 
-/* MENU CONTAINER  */
+/**************** MENU CONTAINER  ***************/
 .menu-container {
     height: 80px;
-    background-color: lightblue;
+    background-color: darkcyan;
     display: flex;
     align-items: center;
 }
@@ -41,6 +60,7 @@
     flex-direction: column;
     justify-content: space-evenly;
 }
+
 #fonts {
     width: 100%;
 }
@@ -49,14 +69,13 @@
     width: 100%;
 }
 
-.alignment-menu {
+.alignment-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.alignment-menu .btn {
-    padding: 0 2rem;
-    /* margin: 0 0.1rem; */
+.alignment-container .btn {
+    width: 20%;
 }
 
 .formula-container {
@@ -64,7 +83,7 @@
     background-color: skyblue;
 }
 
-/* grid container  */
+/******************* GRID CONTAINER *********************/
 .grid-container {
     height: calc(100vh - (80px + 30px + 40px));
     position: relative;
@@ -88,7 +107,7 @@
 }
 
 .col {
-    min-width: 70px;
+    min-width: 100px;
     border: 1px solid;
     min-height: 30px;
     display: flex;
@@ -113,23 +132,39 @@
     display: flex;
 }
 
+.row .col {
+    display: block;
+    padding: 0.3rem;
+    overflow: auto;
+    max-width: 100px;
+}
+
+.row .col::-webkit-scrollbar {
+    display: none;
+}
+
+.row .col {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .grid {
     position: absolute;
     top: 30px;
     left: 40px;
 }
 
-/* SHEETS  */
+/****************** SHEETS CONTAINER  ***********/
 .sheets {
     height: 40px;
-    background-color: lightgray;
+    background-color: darkcyan;
     display: flex;
 }
 
 .add-sheet_container {
     height: 100%;
     min-width: 60px;
-    background-color: gray;
+    background-color: lightgreen;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -158,4 +193,26 @@
 .active-sheet {
     background-color: white;
     border-bottom: 4px solid lightgreen;
+}
+
+/****** FORMULA CONTAINER********/
+.formula-container {
+    display: flex;
+    align-items: center;
+    background-color: rgb(223, 223, 223);
+    justify-content: space-evenly;
+}
+.formula-container > * {
+    height: 70%;
+}
+
+.address-box {
+    width: 10%;
+}
+.separator {
+    width: 2%;
+}
+
+.formula-box {
+    width: 80%;
 }

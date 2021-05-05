@@ -5,6 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Excel Clone</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lato:ital,wght@0,400;0,700;1,400&family=Noto+Sans:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,700;1,400&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet"
+        />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -17,15 +24,21 @@
                 <div class="subgroup">
                     <div class="font-container">
                         <select name="fonts" id="fonts">
-                            <option value="arial">Arial</option>
-                            <option value="helvetica">Helvetica</option>
-                            <option value="roboto">Roboto</option>
+                            <option value="Roboto" selected="selected">
+                                Roboto
+                            </option>
+                            <option value="Lato">Lato</option>
+                            <option value="Noto Sans">Noto Sans</option>
+                            <option value="Ubuntu Mono">Ubuntu Mono</option>
+                            <option value="Dancing Script">
+                                Dancing Script
+                            </option>
                         </select>
                     </div>
                     <div class="style-btn-container">
-                        <button class="bold btn">B</button>
-                        <button class="underline btn">U</button>
-                        <button class="italic btn">I</button>
+                        <button class="bold-btn btn">B</button>
+                        <button class="underline-btn btn">U</button>
+                        <button class="italic-btn btn">I</button>
                     </div>
                 </div>
 
@@ -35,7 +48,7 @@
                             <option value="8">8</option>
                             <option value="10">10</option>
                             <option value="12">12</option>
-                            <option value="16">16</option>
+                            <option value="16" selected="selected">16</option>
                             <option value="20">20</option>
                             <option value="32">32</option>
                         </select>
@@ -47,13 +60,17 @@
                     </div>
                 </div>
             </div>
-            <div class="alignment-menu">
+            <div class="alignment-container">
                 <button class="left-align btn">L</button>
                 <button class="center-align btn">C</button>
                 <button class="right-align btn">R</button>
             </div>
         </div>
-        <div class="formula-container"></div>
+        <div class="formula-container">
+            <input type="text" class="address-box" readonly />
+            <div class="separator">:</div>
+            <input type="text" class="formula-box" />
+        </div>
         <div class="grid-container">
             <div class="top-left-block"></div>
             <div class="top-row">
