@@ -10,11 +10,53 @@
     cursor: pointer;
 }
 
+.btn {
+    min-width: 30px;
+    min-height: 25px;
+}
+
 /* CONTENT STYLING  */
 
+/* MENU CONTAINER  */
 .menu-container {
     height: 80px;
     background-color: lightblue;
+    display: flex;
+    align-items: center;
+}
+
+.menu-container > * {
+    height: 80%;
+    width: 25%;
+    border-right: 2px solid;
+}
+
+.formatting-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.subgroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#fonts {
+    width: 100%;
+}
+
+#font-size {
+    width: 100%;
+}
+
+.alignment-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.alignment-menu .btn {
+    padding: 0 2rem;
+    /* margin: 0 0.1rem; */
 }
 
 .formula-container {

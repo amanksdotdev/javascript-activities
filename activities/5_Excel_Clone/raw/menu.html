@@ -4,12 +4,55 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Excel Clone</title>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        />
-        <link rel="stylesheet" href="./style.css" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            .menu-container {
+                display: flex;
+                width: 50vw;
+                justify-content: space-around;
+                min-height: 80px;
+            }
+            .formatting-container {
+                display: flex;
+                width: 60%;
+                justify-content: space-evenly;
+            }
+
+            .subgroup {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+            }
+            #fonts {
+                width: 100%;
+            }
+
+            #font-size {
+                width: 100%;
+            }
+
+            .alignment-menu {
+                width: 40%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .alignment-menu .btn {
+                padding: 0 1rem;
+                margin: 0 0.1rem;
+            }
+
+            .btn {
+                min-width: 35px;
+                min-height: 30px;
+            }
+        </style>
     </head>
     <body>
         <div class="menu-container">
@@ -53,31 +96,5 @@
                 <button class="right-align btn">R</button>
             </div>
         </div>
-        <div class="formula-container"></div>
-        <div class="grid-container">
-            <div class="top-left-block"></div>
-            <div class="top-row">
-                <div class="col"></div>
-            </div>
-            <div class="left-col">
-                <div class="left-col-box"></div>
-            </div>
-            <div class="grid">
-                <div class="col"></div>
-            </div>
-        </div>
-        <div class="sheets">
-            <div class="add-sheet_container cursor-pointer">
-                <i class="fas fa-plus icon"></i>
-            </div>
-            <div class="sheets-list">
-                <div class="sheet active-sheet cursor-pointer" sheetIdx="0">
-                    Sheet 1
-                </div>
-            </div>
-        </div>
-
-        <script src="./init.js" defer></script>
-        <script src="./script.js" defer></script>
     </body>
 </html>
