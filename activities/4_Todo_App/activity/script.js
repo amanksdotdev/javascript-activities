@@ -88,6 +88,21 @@ const handleInput = function () {
     });
 };
 
+//handle lock
+const handleLock = function (task, lockBtn) {
+    let isUnlocked = task.getAttribute("contenteditable");
+    isUnlocked = isUnlocked == "true"; // convert str to bool
+    task.setAttribute("contenteditable", `${!isUnlocked}`);
+
+    if (isUnlocked) {
+        lockBtn.classList.remove("fa-unlock");
+        lockBtn.classList.add("fa-lock");
+    } else {
+        lockBtn.classList.remove("fa-lock");
+        lockBtn.classList.add("fa-unlock");
+    }
+};
+
 // function to create task
 const createTask = function (color, text, flag, id) {
     let uifn = new ShortUniqueId();
@@ -97,7 +112,8 @@ const createTask = function (color, text, flag, id) {
     div.innerHTML = ` <div class="task-filter ${color}"></div>
         <div class="task">
             <div class="task-id">#${uid}</div>
-            <div class="task-text--div" contenteditable="true">${text}</div>
+            <div class="task-text--div" contenteditable="false">${text}</div>
+            <i class="fa fa-lock lock-btn"></i>
         </div>`;
     contentContainer.appendChild(div);
     taskTextArea.value = "";
@@ -113,6 +129,11 @@ const createTask = function (color, text, flag, id) {
 
     const taskTextDiv = div.querySelector(".task-text--div");
     taskTextDiv.addEventListener("keydown", editTask);
+
+    const lockBtn = div.querySelector(".lock-btn");
+    lockBtn.addEventListener("click", () => {
+        handleLock(taskTextDiv, lockBtn);
+    });
 };
 
 // delete task from ui
