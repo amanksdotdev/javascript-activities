@@ -765,13 +765,13 @@
                 let key = e.key;
                 switch (key) {
                     case "1":
-                        s1.scrollIntoView();
+                        s1.scrollIntoView({behavior:'smooth'});
                         break;
                     case "2":
-                        s2.scrollIntoView();
+                        s2.scrollIntoView({behavior:'smooth'});
                         break;
                     case "3":
-                        s3.scrollIntoView();
+                        s3.scrollIntoView({behavior:'smooth'});
                         break;
                     case "b":
                         window.scrollTo(0, document.body.scrollHeight);
