@@ -293,8 +293,28 @@ for (let cell of AllCells) {
 
     cell.addEventListener("keyup", () => {
         updateDB(cell);
+
+        //update height of left box
+        let cellHeight = cell.getBoundingClientRect().height;
+        let rid = cell.getAttribute("rid");
+        let leftRowBox = document.querySelectorAll(".left-col-box")[rid];
+        let leftRowBoxHeight = leftRowBox.getBoundingClientRect().height;
+        if (cellHeight != leftRowBoxHeight) {
+            leftRowBox.style.height = cellHeight + "px";
+        }
     });
 }
+
+//make top row and left row sticky
+document.querySelector(".grid-container").addEventListener("scroll", (e) => {
+    let top = e.target.scrollTop;
+    let left = e.target.scrollLeft;
+    const topLeftBlock = document.querySelector('.top-left-block');
+    topLeftBlock.style.top = top + "px";
+    topLeftBlock.style.left = left + "px";
+    topRow.style.top = top + "px";
+    leftCol.style.left = left + "px";
+});
 
 //selecting first cell initially
 AllCells[0].click();
