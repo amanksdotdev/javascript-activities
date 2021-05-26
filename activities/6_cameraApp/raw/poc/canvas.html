@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Canvas</title>
+    </head>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <body>
+        <canvas id="board"></canvas>
+
+        <script>
+            let board = document.querySelector("#board");
+            board.width = window.innerWidth;
+            board.height = window.innerHeight;
+
+            const tool = board.getContext("2d");
+
+            tool.fillStyle = "violet";
+            // tool.fillRect(10, 10, board.width / 2, board.height / 2);
+            tool.fillStyle = "pink";
+            // tool.fillRect(200, 200, board.width / 2, board.height / 2);
+
+            tool.strokeStyle = "purple";
+            tool.lineWidth = 10;
+            // tool.strokeRect(80,80,board.width / 2, board.height / 2);
+
+            tool.beginPath();
+            tool.moveTo(20, 20);
+            tool.lineTo(100, 100);
+            tool.stroke();
+
+            tool.strokeStyle = "yellow";
+            tool.beginPath();
+            tool.moveTo(200, 200);
+            tool.lineTo(500, 500);
+            tool.stroke();
+        </script>
+    </body>
+</html>

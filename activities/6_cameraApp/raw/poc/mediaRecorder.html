@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>webcam</title>
+    </head>
+    <body>
+        <button id="recordbtn">Record</button>
+        <script>
+            const recordBtn = document.querySelector("#recordbtn");
+            const constraints = { video: true };
+            let mediaRecorder;
+
+            let recordFlag = false;
+            let chunks = [];
+            const recordFn = function () {
+                if (mediaRecorder != undefined) {
+                    if (recordFlag == false) {
+                        recordFlag = true;
+                        mediaRecorder.start();
+                        recordBtn.innerText = "Recording...";
+                    } else {
+                        recordFlag = true;
+                        mediaRecorder.stop();
+                        recordBtn.innerText = "Record";
+                    }
+                }
+            };
+
+            recordBtn.addEventListener("click", recordFn);
+
+            (async () => {
+                try {
+                    //get mediastream
+                    const mediaStream =
+                        await navigator.mediaDevices.getUserMedia(constraints);
+
+                    //initialize mediarecorder object
+                    mediaRecorder = new MediaRecorder(mediaStream);
+
+                    //on recording push data chunks to chunk array
+                    mediaRecorder.ondataavailable = function (e) {
+                        chunks.push(e.data);
+                    };
+
+                    //on recording stop, create a blob and anchor with blob url click the anchor to download media then remove the anchor
+                    mediaRecorder.onstop = function () {
+                        let blob = new Blob(chunks, { type: "video/mp4" });
+                        chunks = [];
+                        let blobURL = URL.createObjectURL(blob);
+                        var link = document.createElement("a");
+                        link.href = blobURL;
+                        link.download = "video.mp4";
+                        link.click();
+                        link.remove();
+                    };
+                } catch (err) {
+                    console.log(err);
+                }
+            })();
+        </script>
+    </body>
+</html>

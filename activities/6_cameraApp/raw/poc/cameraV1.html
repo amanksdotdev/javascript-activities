@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>webcam</title>
+    </head>
+
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+
+        #videoEl {
+            height: 100vh;
+        }
+
+        #recordbtn {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: white;
+            color: black;
+            margin-left: 5rem;
+            border: 10px solid gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        #recordbtn:hover {
+            cursor: pointer;
+        }
+    </style>
+    <body>
+        <video id="videoEl" autoplay></video>
+
+        <div id="recordbtn">Record</div>
+        <script>
+            const recordBtn = document.querySelector("#recordbtn");
+            const videoEl = document.querySelector("video");
+
+            const constraints = { video: true, audio: true };
+            let mediaRecorder;
+
+            let recordFlag = false;
+            let chunks = [];
+
+            const recordFn = function () {
+                if (mediaRecorder != undefined) {
+                    if (recordFlag == false) {
+                        recordFlag = true;
+                        mediaRecorder.start();
+                        recordBtn.style.backgroundColor = "red";
+                        recordBtn.innerText = "Recording...";
+                    } else {
+                        recordFlag = true;
+                        mediaRecorder.stop();
+                        recordBtn.style.backgroundColor = "white";
+                        recordBtn.innerText = "Record";
+                    }
+                }
+            };
+            recordBtn.addEventListener("click", recordFn);
+
+            (async () => {
+                try {
+                    //get mediastream
+                    const mediaStream =
+                        await navigator.mediaDevices.getUserMedia(constraints);
+
+                    //attaching media stream to videoEl source
+                    videoEl.srcObject = mediaStream;
+
+                    //initialize mediarecorder object
+                    mediaRecorder = new MediaRecorder(mediaStream);
+
+                    //on recording push data chunks to chunk array
+                    mediaRecorder.ondataavailable = function (e) {
+                        chunks.push(e.data);
+                    };
+
+                    //on recording stop, create a blob and anchor with blob url click the anchor to download media then remove the anchor
+                    mediaRecorder.onstop = function () {
+                        let blob = new Blob(chunks, { type: "video/mp4" });
+                        chunks = [];
+                        let blobURL = URL.createObjectURL(blob);
+                        var link = document.createElement("a");
+                        link.href = blobURL;
+                        link.download = "video.mp4";
+                        link.click();
+                        link.remove();
+                    };
+                } catch (err) {
+                    console.log(err);
+                }
+            })();
+        </script>
+    </body>
+</html>
