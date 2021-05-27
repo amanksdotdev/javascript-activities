@@ -11,6 +11,7 @@ let mediaRecorder,
     chunks = [],
     recordFlag = false;
 
+//FUNCTIONS
 const recordFn = function () {
     if (mediaRecorder != undefined) {
         if (recordFlag == false) {
@@ -26,8 +27,36 @@ const recordFn = function () {
         }
     }
 };
-recordEl.addEventListener("click", recordFn);
 
+const animateClickBtn = function () {
+    clickEl.style.backgroundColor = "blue";
+    clickEl.style.border = "6px solid white";
+    setTimeout(() => {
+        clickEl.style.backgroundColor = "white";
+        clickEl.style.border = "6px solid blue";
+    }, 1000);
+};
+
+const captureImg = function () {
+    animateClickBtn;
+    let c = document.createElement("canvas");
+    c.width = videoEl.videoWidth;
+    c.height = videoEl.videoHeight;
+    let tool = c.getContext("2d");
+    tool.drawImage(videoEl, 0, 0);
+    let link = document.createElement("a");
+    link.download = "image.png";
+    link.href = c.toDataURL();
+    link.click();
+    link.remove();
+    c.remove();
+};
+
+//EVENT LISTENER
+recordEl.addEventListener("click", recordFn);
+clickEl.addEventListener("click", captureImg);
+
+// async IIFE for video capture
 (async () => {
     try {
         const mediaStream = await navigator.mediaDevices.getUserMedia(

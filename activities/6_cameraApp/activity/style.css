@@ -63,6 +63,7 @@ body {
 .camera__btn--click {
     border: 6px solid blue;
     transform: scale(1.4);
+    transition: all 1s;
 }
 .camera__btn--record {
     display: flex;
@@ -70,6 +71,12 @@ body {
     justify-content: center;
     border: 6px solid red;
     transition: all 0.5s;
+}
+
+.camera__btn--click:hover,
+.camera__btn--record:hover,
+.camera__gallery:hover {
+    cursor: pointer;
 }
 
 .camera__btn--record .box {
