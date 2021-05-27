@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        .box {
+            height: 100px;
+            width: 100px;
+            margin: 7rem;
+        }
+        .box-1 {
+            background-color: red;
+            animation: scaleUp 5s;
+            animation-fill-mode: forwards;
+        }
+
+        .box-2 {
+            background-color: blue;
+            animation: moveRightAndBack 0.5s 10;
+            animation-delay: 5s;
+        }
+        .box-3 {
+            background-color: yellow;
+            animation: fadeAway 0.6s infinite;
+            animation-delay: 7s;
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(2.2);
+            }
+            75% {
+                transform: scale(1.6);
+            }
+            100% {
+                transform: scale(2);
+            }
+        }
+
+        @keyframes moveRightAndBack {
+            0% {
+                transform: translateX(0px);
+            }
+            50% {
+                transform: translateX(400px);
+            }
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+        @keyframes fadeAway {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+    <body>
+        <div class="box box-1"></div>
+        <div class="box box-2"></div>
+        <div class="box box-3"></div>
+    </body>
+</html>
