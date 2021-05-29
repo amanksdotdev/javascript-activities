@@ -15,22 +15,53 @@ body {
 
 .camera__filters {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    height: 20%;
+    height: 15%;
+    background-color: black;
+    z-index: 2;
 }
 
 .camera__filter {
-    height: 30px;
-    width: 50px;
-    background-color: yellow;
+    height: 60%;
+    width: 18%;
+    background-image: url(https://images.unsplash.com/photo-1591526038358-0e3d334fb8c0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100);
+    background-blend-mode: color-burn;
+    border: 2px solid white;
+}
+
+.camera__filter:hover,
+.zoom:hover {
+    cursor: pointer;
+}
+
+.zoom {
+    position: absolute;
+    color: white;
+    font-size: 3rem;
+    font-weight: bolder;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    top: 35vh;
+    right: 1rem;
+    min-width: 10vw;
+    min-height: 10vh;
+    z-index: 2;
+}
+
+.zoom > * {
+    height: 50%;
+    width: 100%;
 }
 
 .camera__video {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 55%;
+    height: 60%;
     background-color: black;
     overflow: hidden;
 }
@@ -46,6 +77,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    z-index: 2;
 }
 
 .camera__gallery {
@@ -105,10 +137,32 @@ body {
         width: 10%;
         height: 100%;
     }
+
+    .camera__filter {
+        height: 10%;
+        width: 80%;
+    }
     .camera__video {
         width: 80%;
         height: 100%;
         align-items: center;
+    }
+
+    .zoom {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        top: 2rem;
+        left: 2rem;
+        font-size: 3rem;
+        min-width: 10rem;
+        max-width: 10rem;
+        min-height: 4rem;
+        height: 4rem;
+    }
+    .zoom > * {
+        height: 100%;
+        width: 50%;
     }
 
     #video {
