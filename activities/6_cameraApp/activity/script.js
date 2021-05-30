@@ -3,8 +3,7 @@
 const videoEl = document.querySelector("#video");
 const recordEl = document.querySelector(".camera__btn--record");
 const clickEl = document.querySelector(".camera__btn--click");
-const box = document.querySelector(".box");
-
+const box = document.querySelector(".box"); //video recorder btn hidden div
 const constraints = { video: true };
 
 let mediaRecorder,
@@ -41,7 +40,6 @@ const animateClickBtn = function () {
 
 const captureImg = function () {
     animateClickBtn();
-    const date = new Date();
     let c = document.createElement("canvas");
     c.width = videoEl.videoWidth;
     c.height = videoEl.videoHeight;
@@ -58,12 +56,15 @@ const captureImg = function () {
         tool.fillRect(0, 0, c.width, c.height);
         console.log("filled");
     }
-    let link = document.createElement("a");
-    link.download = `${date.toDateString().split(" ").join("-")}.png`;
-    link.href = c.toDataURL();
-    link.click();
-    link.remove();
+
+    addMediaToGallery(c.toDataURL(), "img");
     c.remove();
+    // let link = document.createElement("a");
+    // link.download = `${date.toDateString().split(" ").join("-")}.png`;
+    // link.href = c.toDataURL();
+    // link.click();
+    // link.remove();
+    // c.remove();
 };
 
 const removeFilter = function () {
@@ -153,12 +154,7 @@ zoomout.addEventListener("click", () => {
             let blob = new Blob(chunks, { type: "video/mp4" });
             //reset chunks
             chunks = [];
-            let blobURL = URL.createObjectURL(blob);
-            let link = document.createElement("a");
-            link.href = blobURL;
-            link.download = "video.mp4";
-            link.click();
-            link.remove();
+            addMediaToGallery(blob, "video");
         };
     } catch (err) {
         console.log(err);

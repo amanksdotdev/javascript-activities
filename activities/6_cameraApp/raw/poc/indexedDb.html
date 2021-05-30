@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>IndexedDB</title>
+    </head>
+    <body>
+        Name<input type="text" class="dbName" , value="notes" /> Version<input
+            type="text"
+            class="dbVersion"
+            ,
+            value="1"
+        />
+        <button class="createDB">Create DB</button>
+        <button class="addNotes">Add Notes</button>
+
+        <script>
+            const createDbBtn = document.querySelector(".createDB");
+            const addNotesBtn = document.querySelector(".addNotes");
+            let db;
+            createDbBtn.addEventListener("click", createDB);
+            function createDB() {
+                let dbName = document.querySelector(".dbName").value;
+                let dbVersion = document.querySelector(".dbVersion").value;
+                let req = indexedDB.open(dbName, dbVersion);
+                req.onupgradeneeded = (e) => {
+                    alert("upgrade was called");
+                    db = req.result;
+                    db.createObjectStore(dbName, { keyPath: "id" });
+                };
+
+                req.onsuccess = (e) => {
+                    alert("success was called");
+                    db = req.result;
+                    viewNotes();
+                };
+                req.onerror = (e) => {
+                    alert(e.target.error);
+                };
+            }
+            addNotesBtn.addEventListener("click", addNote);
+            function addNote() {
+                let note = {
+                    id: "xyz",
+                    txt: "my first note",
+                };
+                let tx = db.transaction("notes", "readwrite");
+                let notesStore = tx.objectStore("notes");
+                notesStore.add(note);
+            }
+            function viewNotes() {
+                let tx = db.transaction("notes", "readonly");
+                let notes = tx.objectStore("notes");
+                let request = notes.openCursor();
+                request.onsuccess = function (e) {
+                    let cursor = request.result;
+                    if (cursor) {
+                        console.log("cursor");
+                        console.log(cursor.value);
+                        cursor.continue();
+                    }
+                };
+            }
+        </script>
+    </body>
+</html>
