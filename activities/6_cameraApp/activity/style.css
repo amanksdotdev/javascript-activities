@@ -7,6 +7,10 @@ body {
     background-color: black;
 }
 
+a {
+    text-decoration: none;
+}
+
 .camera {
     display: flex;
     flex-direction: column;

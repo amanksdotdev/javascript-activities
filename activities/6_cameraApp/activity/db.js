@@ -53,6 +53,23 @@ function viewMedia() {
                 downloadBtn.innerText = "Download";
                 vidContainer.appendChild(downloadBtn);
 
+                downloadBtn.addEventListener("click", () => {
+                    let a = document.createElement("a");
+                    a.href = video.src;
+                    a.download = "video.mp4";
+                    a.click();
+                    a.remove();
+                });
+
+                deletebtn.addEventListener("click", () => {
+                    let id = vidContainer.getAttribute("data-id");
+
+                    let tx = db.transaction("gallery", "readwrite");
+                    let gallery = tx.objectStore("gallery");
+                    gallery.delete(Number(id));
+                    vidContainer.remove();
+                });
+
                 body.appendChild(vidContainer);
             } else {
                 let imgContainer = document.createElement("div");
@@ -74,8 +91,31 @@ function viewMedia() {
                 imgContainer.appendChild(deleteBtn);
                 imgContainer.appendChild(downloadBtn);
                 body.appendChild(imgContainer);
+
+                downloadBtn.addEventListener("click", () => {
+                    let a = document.createElement("a");
+                    a.href = img.src;
+                    a.download = "img.png";
+                    a.click();
+                    a.remove();
+                });
+
+                deleteBtn.addEventListener("click", () => {
+                    let id = imgContainer.getAttribute("data-id");
+
+                    let tx = db.transaction("gallery", "readwrite");
+                    let gallery = tx.objectStore("gallery");
+                    gallery.delete(Number(id));
+                    imgContainer.remove();
+                });
             }
             cursor.continue();
         }
     };
 }
+
+
+
+// location.assign(url) --> instead of <a/> we could use this to change active location using javascript
+
+
