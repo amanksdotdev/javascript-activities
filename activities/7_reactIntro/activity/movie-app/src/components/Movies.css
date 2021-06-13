@@ -1,0 +1,18 @@
+.fa-sort-up,
+.fa-sort-down {
+    opacity: 0.5;
+    color: gray;
+}
+
+.sort-active {
+    color: #333;
+    opacity: 1;
+}
+
+.header {
+    text-align: center;
+    background-color: #333;
+    padding: 3rem;
+    color: white;
+}
+
