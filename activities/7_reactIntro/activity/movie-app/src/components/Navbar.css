@@ -1,0 +1,24 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1.5rem 3rem;
+    color: white;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 20rem;
+}
+
+.list .link {
+    text-decoration: none;
+    color: white;
+}
+
+.active {
+    color: gold !important;
+}

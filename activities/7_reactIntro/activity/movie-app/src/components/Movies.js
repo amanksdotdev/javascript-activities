@@ -121,10 +121,7 @@ export default class Movies extends Component {
 
         return (
             <div className="container">
-                <div className="header">
-                    <h1>Movies List</h1>
-                </div>
-                <div className="row mt-5">
+                <div className="row">
                     <div className="col-3">
                         <h3>Filter by Genre</h3>
                         {this.state.movies.length === 0 ? (
