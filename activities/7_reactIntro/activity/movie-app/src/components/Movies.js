@@ -67,6 +67,10 @@ export default class Movies extends Component {
         }
     };
 
+    handleLimit = (e) => {
+        this.setState({ limit: e.target.value });
+    };
+
     render() {
         //search filter
         let filteredMovies = this.state.movies;
@@ -123,7 +127,9 @@ export default class Movies extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-3">
+                        {/* genre filter input  */}
                         <h3>Filter by Genre</h3>
+                        {/* If movies list empty then render loader else load all genre */}
                         {this.state.movies.length === 0 ? (
                             <div
                                 className="spinner-border text-primary"
@@ -160,6 +166,24 @@ export default class Movies extends Component {
                                 })}
                             </div>
                         )}
+                        {/* page limit input  */}
+                        <div className="form-group mt-3">
+                            <label htmlFor="limit">
+                                <h5>Movies per page:</h5>
+                            </label>
+                            <select
+                                value={this.state.limit}
+                                className="form-control"
+                                id="limit"
+                                onChange={this.handleLimit}
+                            >
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="col-9">
                         <div className="input-group mb-3">
@@ -236,6 +260,7 @@ export default class Movies extends Component {
                                 </tr>
                             </thead>
                             <tbody>
+                                {/* if movies list empty then render loader else render movies table data */}
                                 {this.state.movies.length === 0 ? (
                                     <tr
                                         className="spinner-border text-primary"
@@ -269,9 +294,9 @@ export default class Movies extends Component {
                                         </tr>
                                     ))
                                 )}
-                                {/* {} */}
                             </tbody>
                         </table>
+                        {/* pagination */}
                         <nav aria-label="Page navigation example">
                             <ul className="pagination justify-content-center">
                                 <li
@@ -292,6 +317,7 @@ export default class Movies extends Component {
                                     </a>
                                 </li>
 
+                                {/* using idx as key by making an array of numbers using total num of pages*/}
                                 {[...Array(totalNumOfPages + 1).keys()]
                                     .slice(1)
                                     .map((pageNum) => {

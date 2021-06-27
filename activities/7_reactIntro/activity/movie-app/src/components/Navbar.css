@@ -19,6 +19,6 @@
     color: white;
 }
 
-.active {
-    color: gold !important;
+.list .link.active {
+    color: gold;
 }
