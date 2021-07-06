@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import firebase from "./firebase";
 
+//demo of login & logout
+
 function Demo() {
     // console.log(firebase);
     const auth = firebase.auth();
